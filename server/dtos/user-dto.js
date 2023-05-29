@@ -1,21 +1,18 @@
 class UserDto {
-    id;
-    phone;
-    name;
-    avatar;
-    activated;
-    createdAt;
+  id;
+  name;
+  avatar;
+  createdAt;
+  updatedAt;
 
-    constructor(user) {
-        this.id = user._id;
-        this.phone = user.phone;
-        this.name = user.name;
-        this.avatar = user.avatar
-            ? `${process.env.BASE_URL}${user.avatar}`
-            : null;
-        this.activated = user.activated;
-        this.createdAt = user.createdAt;
-    }
+  constructor(user) {
+    this.id = user._id;
+    this.name = user.name;
+    this.avatar = user.avatar || "";
+    this.activated = user.activated;
+    this.createdAt = user.createdAt;
+    this.updatedAt = user.updatedAt;
+  }
 }
 
 module.exports = UserDto;
