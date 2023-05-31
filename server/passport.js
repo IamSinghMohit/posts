@@ -1,10 +1,11 @@
 const passport = require("passport");
 const passportJWT = require("passport-jwt");
+const UserService = require("./services/user-service");
 const JWTStrategy = passportJWT.Strategy;
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 
 const cookieExtractor = function (req) {
-  const token = null;
+  let token = null;
   if (req && req.cookies) {
     token = req.cookies["accessToken"];
   }
@@ -17,14 +18,15 @@ passport.use(
       jwtFromRequest: cookieExtractor,
       secretOrKey: process.env.JWT_ACCESS_TOKEN_SECRET,
     },
-    (jwtPayload, done) => {
-      console.log(jwtPayload);
-
-      /* if (Date.now() > expiration) {
+    async (jwtPayload, done) => {
+      const { exp, _id } = jwtPayload;
+      if (Date.now() > exp * 1000) {
         done("Unauthorized", false);
-      } */
-
-      done(null, jwtPayload);
+      }
+      const user = await UserService.findUser({_id });
+      if (user) {
+        done(null, user);
+      }
     }
   )
 );
@@ -39,9 +41,9 @@ passport.use(
     async (req, accessToken, refreshToken, profile, cb) => {
       const defaultUser = {
         name: profile.givenName,
-        email:profile.email[0].value,
-        avatar:profile.photos[0].value,
-        googleId:profile.id
+        email: profile.email[0].value,
+        avatar: profile.photos[0].value,
+        googleId: profile.id,
       };
       /* LOGING HERE  */
     }

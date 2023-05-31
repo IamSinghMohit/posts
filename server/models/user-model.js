@@ -4,8 +4,10 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema(
   {
     googleId: { type: String, required: false },
-    name: { type: String, required: true },
+    name: { type: String, required: [true, "Please provide a name"] },
     avatar: { type: String, required: false },
+    email: { type: String, required: [true, "Please provide an Email"] },
+    password: { type: String, required: false },
   },
   {
     timestamps: true,

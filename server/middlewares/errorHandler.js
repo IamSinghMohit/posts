@@ -2,7 +2,6 @@ const ErrorResponse = require("../utils/errorResponse");
 
 const errorHandler = (err, req, res, next) => {
   console.log(err);
-
   let error = { ...err };
 
   error.message = err.message;
@@ -17,15 +16,30 @@ const errorHandler = (err, req, res, next) => {
     error = new ErrorResponse(message, 400);
   }
 
-  if (err.name === "ValidationError") {
+  if (
+    error.name === "ValidationError" &&
+    error.inner &&
+    Array.isArray(error.inner)
+  ) {
+    const message = Object.values(err.errors).join(", ");
+    error = new ErrorResponse(message, 422);
+  }
+
+  if (
+    error.name === "ValidationError" &&
+    !error.inner &&
+    !Array.isArray(error.inner)
+  ) {
     const message = Object.values(err.errors)
       .map((error) => error.message)
       .join(", ");
-    error = new ErrorResponse(message, 400);
+    error = new ErrorResponse(message, 422);
   }
 
-  // add more check...
-
+  if (error.name === "TokenExpiredError") {
+    const message = "Invalid Token";
+    error = new ErrorResponse(message, 422);
+  }
   res.status(error.statusCode || 500).json({
     error: error.message || "Server Error",
   });
