@@ -33,12 +33,12 @@ const errorHandler = (err, req, res, next) => {
     const message = Object.values(err.errors)
       .map((error) => error.message)
       .join(", ");
-    error = new ErrorResponse(message, 422);
+    error = new ErrorResponse(message, 403);
   }
 
   if (error.name === "TokenExpiredError") {
     const message = "Invalid Token";
-    error = new ErrorResponse(message, 422);
+    error = new ErrorResponse(message, 404);
   }
   res.status(error.statusCode || 500).json({
     error: error.message || "Server Error",

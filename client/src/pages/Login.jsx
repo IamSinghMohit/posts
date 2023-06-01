@@ -1,13 +1,26 @@
 import { logInSchema } from "./../schema/index";
 import { Form, Formik, useFormik } from "formik";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import TextField from "./../components/form/TextFeild";
 import { useUserLogin } from "./../hooks/userUserLogin";
 import { useUserGoogle } from "./../hooks/userUserGoogle";
 import Spinner from "./../components/spinner";
+import { useDispatch, useSelector } from "react-redux";
+import { setUser } from "./../store/userSlice";
+import { useEffect } from "react";
 function Login() {
-  const { data, isLoading, mutate: login, isError } = useUserLogin();
+  const dispatch = useDispatch();
+  const url = useSelector((state) => state.userSlice.url);
+  const { isLoading, mutate: login, data } = useUserLogin();
   const { mutate: loginWithGoogle } = useUserGoogle();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (data) {
+      dispatch(setUser(data));
+      navigate("/");
+    }
+  },[data])
   const initialValues = {
     email: "",
     password: "",
@@ -63,7 +76,7 @@ function Login() {
             {/* BUTTON */}
             <p className="text-black">
               Dont' have an
-              <Link href="/signin" className="text-blue-800">
+              <Link to="/signin" className="text-blue-800">
                 &nbsp; account?
               </Link>
             </p>

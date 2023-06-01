@@ -1,10 +1,10 @@
 import { useMutation } from "react-query";
-import axios from "../lib/axiosInstance";
 
 const postUserData = async function () {
-  const res = await axios.get("/auth/login/google");
+  /* const res = await fetch("/auth/login/google");
   console.log(res)
-  return res;
+  return res; */
+  window.open('http://localhost:3001/auth/login/google','_self')
 };
 
 export const useUserGoogle = () => {

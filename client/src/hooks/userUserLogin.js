@@ -1,15 +1,11 @@
 import { useMutation } from "react-query";
-import axios from "../lib/axiosInstance";
+import CustomeFetch from "../lib/fetchInstance";
 
 const postUserData = async function (data) {
-  const res = await axios.post("/auth/login", data );
+  const res = await CustomeFetch.post("auth/login",data);
   return res;
 };
 
-export const useUserLogin = (data) => {
-  return useMutation((data) => postUserData(data), {
-    onError: (e) => {
-      console.log(e, "at on error");
-    },
-  });
+export const useUserLogin = () => {
+  return useMutation((data) => postUserData(data));
 };

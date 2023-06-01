@@ -105,7 +105,7 @@ function SignIn() {
             </button>
             <p className="text-black">
               Already have an
-              <Link href="/login" className="text-blue-800">
+              <Link to="/login" className="text-blue-800">
                 &nbsp; account
               </Link>
             </p>

@@ -2,12 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-body,
-html,
-#root,
-.app{
-  height: 100%;
-  width: 100%;
+body{
+  @apply bg-stone-800 text-white 
 }
 .put-shadow{
   -webkit-box-shadow: 14px 15px 8px -13px rgba(0,0,0,1);

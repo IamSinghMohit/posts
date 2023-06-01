@@ -13,6 +13,18 @@ class Validate {
     return Validate.validate(schema)(req, res, next);
   }
 
+  static loginValidation(req,res,next){
+    const schema = Yup.object({
+      body: Yup.object({
+        email: Yup.string().email().required("Please enter your email"),
+        password: Yup.string().min(5).required("Please enter your password"),
+      }),
+    })
+
+    return Validate.validate(schema)(req, res, next);
+
+  }
+
   static validate(schema) {
     return async (req, res, next) => {
       try {

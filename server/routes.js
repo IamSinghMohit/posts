@@ -6,24 +6,24 @@ const asyncHandler = require("./middlewares/asyncHandler");
 const Validate = require("./middlewares/validate");
 // ----------------- AUTHENTICATION ROUTES -------------------------
 router.get(
-  "auth/login/google",
+  "/auth/login/google",
   passport.authenticate("google", { scope: ["profile", "email"],session:false })
 );
 router.get(
-  "auth/google/callback",
+  "/auth/google/callback",
   passport.authenticate("google", {
     failureMessage: "Cannot login",
   }),
   (req, res) => {}
 );
-router.post("auth/login", asyncHandler(AuthController.login));
+router.post("/auth/login", asyncHandler(AuthController.login));
 router.post(
   "/auth/signin",
   Validate.signinValidation,
   asyncHandler(AuthController.signin)
 );
 router.post("/auth/login",
-  Validate.signinValidation,
+  Validate.loginValidation,
   asyncHandler(AuthController.login)
 )
 router.get("/auth/refresh",asyncHandler(authController.refresh))

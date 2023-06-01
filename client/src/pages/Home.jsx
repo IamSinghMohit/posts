@@ -1,23 +1,49 @@
-import Card from "./../components/post/scene/Card"
+import Card from "./../components/post/scene/Card";
+import {Link} from "react-router-dom"
 function Home() {
   return (
     <>
       <main>
         <div className="mx-auto flex flex-wrap justify-center">
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
+          <Link to="/post/lksd">
+            <Card />
+          </Link>
+          <Link to="/post/lksd">
+            <Card />
+          </Link>
+          <Link to="/post/lksd">
+            <Card />
+          </Link>
+          <Link to="/post/lksd">
+            <Card />
+          </Link>
+          <Link to="/post/lksd">
+            <Card />
+          </Link>
+          <Link to="/post/lksd">
+            <Card />
+          </Link>
+          <Link to="/post/lksd">
+            <Card />
+          </Link>
+          <Link to="/post/lksd">
+            <Card />
+          </Link>
+          <Link to="/post/lksd">
+            <Card />
+          </Link>
+          <Link to="/post/lksd">
+            <Card />
+          </Link>
+          <Link to="/post/lksd">
+            <Card />
+          </Link>
+          <Link to="/post/lksd">
+            <Card />
+          </Link>
+          <Link to="/post/lksd">
+            <Card />
+          </Link>
         </div>
       </main>
     </>

@@ -21,7 +21,7 @@ class AuthController {
       password: hashedPassword,
     });
 
-    ResponseService.sendCookiesWithUser(res, user);
+    await ResponseService.sendCookiesWithUser(res, user);
   }
 
   async login(req, res, next) {
@@ -45,7 +45,6 @@ class AuthController {
   }
 
   async refresh(req, res, next) {
-
     // get refresh token from cookie
     const { refreshToken: refreshTokenFromCookie } = req.cookies;
 
@@ -54,7 +53,9 @@ class AuthController {
     }
 
     // check if token is valid
-    const  userData = await tokenService.verifyRefreshToken(refreshTokenFromCookie);
+    const userData = await tokenService.verifyRefreshToken(
+      refreshTokenFromCookie
+    );
 
     // Check if token is in db
     const token = await tokenService.findRefreshToken(
@@ -67,7 +68,7 @@ class AuthController {
 
     // check if valid user
     // ... it was updated
-    
+
     // Generate new tokens
     const { refreshToken, accessToken } = tokenService.generateTokens({
       _id: userData._id,
@@ -77,14 +78,12 @@ class AuthController {
     await tokenService.updateRefreshToken(userData._id, refreshToken);
 
     // put in cookie
-    ResponseService.sendCookieWithParameters(
+    await ResponseService.sendCookieWithParameters(
       res,
       refreshToken,
-      accessToken,
+      accessToken
     );
-
   }
-
 }
 
 module.exports = new AuthController();

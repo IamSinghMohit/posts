@@ -34,9 +34,9 @@ passport.use(
 passport.use(
   new GoogleStrategy(
     {
-      clientID: process.env,
-      clientSecret: process.env,
-      callbackURL: "http://localhost3001/auth/google/callback",
+      clientID: process.env.CLIENT_ID,
+      clientSecret: process.env.CLIENT_SECRET,
+      callbackURL: "http://localhost:3001/auth/google/callback",
     },
     async (req, accessToken, refreshToken, profile, cb) => {
       const defaultUser = {

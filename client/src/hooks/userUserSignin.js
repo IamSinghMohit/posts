@@ -1,8 +1,9 @@
-import { useMutation } from "react-query";
-import axios from "../lib/axiosInstance";
+import { useMutation } from "react-query"
+import fetch from "../lib/fetchInstance";
 
 const postUserData = async function (data) {
-  const res = await axios.post("/auth/signin", data);
+  console.log(data)
+  const res = await fetch.post("auth/signin", data);
   return res;
 };
 

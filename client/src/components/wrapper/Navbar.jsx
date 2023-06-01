@@ -1,12 +1,14 @@
-'use client'
 import { Logo, Person, Search } from "./../../../icons";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
   return (
     <nav className="h-12 w-full sticky top-0 bg-zinc-700 flex items-center justify-between px-12 py-2">
-      <div>
-        <Logo className={"w-10 h-10 text-zinc-300"} />
-      </div>
+      <Link to='/'>
+        <div>
+          <Logo className={"w-10 h-10 text-zinc-300"} />
+        </div>
+      </Link>
       <div className="bg-zinc-300 flex items-center p-1 rounded-full">
         <button className="p-2 hover:bg-slate-950 hover:text-white rounded-full text-black">
           <Search className={"w-4 h-4"} />
@@ -17,9 +19,11 @@ export default function Navbar() {
           placeholder="Search..."
         />
       </div>
-      <div>
-        <Person className={"w-10 h-10 text-zinc-300"} />
-      </div>
+      <Link to='/profile'>
+        <div>
+          <Person className={"w-10 h-10 text-zinc-300"} />
+        </div>
+      </Link>
     </nav>
   );
 }
