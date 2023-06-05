@@ -19,7 +19,7 @@ export default function Navbar() {
           placeholder="Search..."
         />
       </div>
-      <Link to='/profile'>
+      <Link to='/profile/lsk'>
         <div>
           <Person className={"w-10 h-10 text-zinc-300"} />
         </div>

@@ -2,23 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
-  @apply bg-stone-800 text-white 
+body {
+  @apply bg-stone-800 text-white;
 }
-.put-shadow{
-  -webkit-box-shadow: 14px 15px 8px -13px rgba(0,0,0,1);
-  -moz-box-shadow: 14px 15px 8px -13px rgba(0,0,0,1);
-  box-shadow: 14px 15px 8px -13px rgba(0,0,0,1);
+.put-shadow {
+  -webkit-box-shadow: 14px 15px 8px -13px rgba(0, 0, 0, 1);
+  -moz-box-shadow: 14px 15px 8px -13px rgba(0, 0, 0, 1);
+  box-shadow: 14px 15px 8px -13px rgba(0, 0, 0, 1);
 }
-.primary-input{
+.primary-input {
   @apply border-b focus:border-blue-700 h-full px-2 outline-none transition-all bg-transparent py-3 text-xl border-black text-black;
 }
-label{
+label {
   @apply absolute peer-focus:text-xs peer-focus:-top-3 peer-focus:text-blue-700 transition-all top-4;
 }
-.flex-4{
+.flex-4 {
   flex: 4;
 }
-.flex-2{
+.flex-2 {
   flex: 2;
 }

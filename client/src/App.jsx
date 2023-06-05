@@ -8,6 +8,7 @@ import Wrapper from "./components/wrapper/Wrapper";
 import { useEffect } from "react";
 import CustomeFetch from "./lib/fetchInstance";
 import { useSelector } from "react-redux";
+import Profile from "./pages/Profile";
 
 function App() {
   const user = useSelector((state) => state.userSlice.user);
@@ -23,6 +24,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="post/:id" element={<Posts />} />
           <Route path="post/create" element={<CreatePost />} />
+          <Route path="/profile/:id" element={<Profile />} />
         </Route>
         {user == null ? (
           <>
